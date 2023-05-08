@@ -1,0 +1,9 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonJS",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+  }
+}
