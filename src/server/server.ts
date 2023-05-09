@@ -1,5 +1,12 @@
 import express, {Request, Response, NextFunction, RequestHandler } from 'express';
 const {google} = require('googleapis')
+const url = require('url')
+
+
+const app = express();
+
+
+
 
 const oauth2Client = new google.auth.OAuth2(
   "1064967234338-lpljla832pka03qkmg5lg802uu8qm4ic.apps.googleusercontent.com",
@@ -10,17 +17,39 @@ const oauth2Client = new google.auth.OAuth2(
 const scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
 
 const authorizationUrl = oauth2Client.generateAuthUrl({
-  access_type: 'online',
+  access_type: 'offline',
   scope,
 })
-console.log(authorizationUrl)
-const app = express();
-app.get('/callback', (req, res)=>{
-  res.json("ey yoooo")
+
+
+
+app.get('/callback', async (req, res)=>{
+
+  if (req.url.startsWith('/callback')) {
+    let q = url.parse(req.url, true).query;
+    let { tokens } = await oauth2Client.getToken(q.code);
+    oauth2Client.setCredentials(tokens);
+  }
+
+
+    const people = google.people({version: 'v1', auth: oauth2Client});
+    people.people.get({
+      resourceName: 'people/me',
+      personFields: 'emailAddresses,names,nicknames,photos,genders,birthdays,ageRanges,locales'
+    }, (err, res) => {
+      if (err) return console.log('The API returned an error: ' + err);
+      console.log('Email: ' + res.data.emailAddresses[0].value + res.data.emailAddresses[0].value);
+      console.log(res.data);
+    });
+
+
+
+
+  res.json(2)
 })
 app.use(express.json());
 app.get('/login', (req, res)=>{
-  console.log(authorizationUrl)
+
   res.redirect(authorizationUrl);
 })
 
