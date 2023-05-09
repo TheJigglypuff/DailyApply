@@ -14,7 +14,7 @@ const oauth2Client = new google.auth.OAuth2(
   "http://localhost:3000/callback"
 )
 
-const scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+const scope = ['https://www.googleapis.com/auth/userinfo.email']
 
 const authorizationUrl = oauth2Client.generateAuthUrl({
   access_type: 'offline',
