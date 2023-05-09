@@ -14,7 +14,7 @@ module.exports = {
             
             console.log('User Creation Successful!')
 
-            const user_id = result.rows[0].id;
+            const user_id = result.rows[0].user_id;
             console.log('this is user_id', user_id);
             res.locals.user_id = user_id;
             return next();
