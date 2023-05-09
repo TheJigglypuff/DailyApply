@@ -21,6 +21,8 @@ const JobApplicationForm = () => {
         // reset input fields
         setCompany('');
         setRole('');
+      } else {
+        console.log('Error fetching request');
       }
     } catch (err) {
       console.log('Error:', err);
