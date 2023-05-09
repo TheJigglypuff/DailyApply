@@ -4,6 +4,7 @@
     "jsx": "react",
     "module": "commonJS",
     "esModuleInterop": true,
+    // "moduleResolution": "node"
     // "noImplicitAny": true,
   }
 }
