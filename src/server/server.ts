@@ -1,4 +1,7 @@
 import express, {Request, Response, NextFunction, RequestHandler } from 'express';
+const {query} = require ('./db.config.ts');
+const userController = require('./controllers/userController');
+
 const {google} = require('googleapis')
 const url = require('url')
 
@@ -53,7 +56,21 @@ app.get('/login', (req, res)=>{
   res.redirect(authorizationUrl);
 })
 
+app.post('/createNewUser', userController.createNewUser, (req,res) => {
+    res.sendStatus(200);
+});
 
 
+
+// const test = async() => { 
+//     try {
+//         const selectUsers = 'SELECT * FROM users';
+//         const users = await query(selectUsers);
+//         console.log(users);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+// test();
 
 app.listen(3000, () => console.log('server is listening on port 3000'));
