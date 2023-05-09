@@ -5,6 +5,7 @@ import { Express, Request, Response, NextFunction } from 'express';
 module.exports = {
     createNewUser: async (req: Request, res: Response, next: NextFunction) => {
         const { email, name } = req.body;
+        //add photoURL
         try {
             const checkUser = await query(`SELECT * from users where email = $1`, [email]);
             if (checkUser.rows.length > 0) {
