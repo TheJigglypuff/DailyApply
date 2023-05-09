@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import JobApplicationForm from './jobApplicationForm';
+import JobApplicationForm from './JobApplicationForm';
 
 const Main = () => {
   return (
