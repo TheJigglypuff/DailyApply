@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
 
-
 const App = () => {
   return (
     <div>
@@ -14,6 +13,11 @@ const App = () => {
       </Routes>
     </div>
   );
-}
+};
 
-render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('#root'));
+render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.querySelector('#root')
+);
