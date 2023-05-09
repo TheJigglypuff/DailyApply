@@ -560,6 +560,10 @@ video {
   width: 100%;
 }
 
+.w-1\/5 {
+  width: 20%;
+}
+
 .max-w-screen-xl {
   max-width: 1280px;
 }
