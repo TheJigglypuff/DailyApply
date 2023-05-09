@@ -4,14 +4,27 @@ const JobApplicationForm = () => {
   const [company, setCompany] = useState<string>('');
   const [role, setRole] = useState<string>('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // send data to the back to store in DB
-
-    // reset input fields
-    console.log('111');
-    setCompany('');
-    setRole('');
+    const formData = {
+      company,
+      role,
+    };
+    try {
+      const response = await fetch('////', {
+        method: 'POST',
+        headers: { 'Content-Type': ' application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        // reset input fields
+        setCompany('');
+        setRole('');
+      }
+    } catch (err) {
+      console.log('Error:', err);
+    }
   };
 
   return (
