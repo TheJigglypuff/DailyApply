@@ -20,6 +20,7 @@ app.get('/callback', (req, res)=>{
 })
 app.use(express.json());
 app.get('/login', (req, res)=>{
+  console.log(authorizationUrl)
   res.redirect(authorizationUrl);
 })
 
