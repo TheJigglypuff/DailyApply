@@ -1,13 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-// import Board from './Components/Board';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Main from './components/Main';
+import Navbar from './components/Navbar';
+
+
 const App = () => {
   return (
     <div>
-      <h1 className='text-rose-600' >Tic Tac Toe</h1>
-      {/* <Board /> */}
+      <Navbar />
+      <Routes>
+        <Route path='/here' element={<Main />} />
+      </Routes>
     </div>
   );
 }
 
-render(<App />, document.querySelector('#root'));
+render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('#root'));
