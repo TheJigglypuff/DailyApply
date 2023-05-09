@@ -5,23 +5,23 @@ const Navbar = () => {
   const [dailyStreak, setDailyStreak] = useState<number>(0);
   const [totalApplications, setTotalApplications] = useState<number>(0);
 
-  const fetchApplications = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/getApps');
-      const data = await response.json();
-      setDailyStreak(data.dailyStreak);
-      setTotalApplications(data.totalApplications);
-    } catch (err) {
-      console.log('Error:', err);
-    }
-  };
+  // const fetchApplications = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/getApps');
+  //     const data = await response.json();
+  //     setDailyStreak(data.dailyStreak);
+  //     setTotalApplications(data.totalApplications);
+  //   } catch (err) {
+  //     console.log('Error:', err);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchApplications();
-  }, []);
+  // useEffect(() => {
+  //   fetchApplications();
+  // }, []);
 
   return (
-    <nav className='bg-white border-gray-200 dark:bg-gray-900'>
+    <nav className='bg-blue-900 border-gray-200 dark:bg-gray-900'>
       <div className='max-w-screen-xl flex items-center justify-between mx-auto p-4'>
         <span className=' text-2xl font-semibold text-blue-500 '>
           TheTracker
