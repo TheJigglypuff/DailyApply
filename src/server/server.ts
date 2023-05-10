@@ -8,9 +8,13 @@ const url = require('url')
 
 
 const app = express();
+// app.get('/here', (req,res) => {
+//   res.json(false)
+// })
 
-
-
+// app.get('/here2', (req,res) => {
+//   res.redirect('/')
+// })
 
 const oauth2Client = new google.auth.OAuth2(
   "1064967234338-lpljla832pka03qkmg5lg802uu8qm4ic.apps.googleusercontent.com",
@@ -59,6 +63,10 @@ app.post('/createNewUser', userController.createNewUser, (req,res) => {
     res.sendStatus(200);
 });
 
+app.post('/createNewEvent', eventController.createNewEvent, (req,res) => {
+    res.sendStatus(200);
+});
+
 app.get('/getAllUsers', userController.getAllUsers, (req,res) => {
     res.status(200).send(res.locals.allUsers);
 })
@@ -67,6 +75,9 @@ app.get('/getYourEvents', eventController.getYourEvents, (req,res) => {
     res.status(200).send(res.locals.myEvents);
 })
 
+app.get('/checkStreak', userController.checkStreak, (req,res) => {
+    res.sendStatus(200);
+});
 
 
 
