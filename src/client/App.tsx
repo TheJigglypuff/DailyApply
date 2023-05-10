@@ -9,9 +9,9 @@ const App = () => {
   const [needLogin, setLogin] = useState(true)
 
   useEffect(()=>{
-    fetch("/checkCookies")
-    .then((res)=> res.json())
-    .then((res) => setLogin(res))
+    // fetch("/checkCookies")
+    // .then((res)=> res.json())
+    // .then((res) => setLogin(res))
   }, [])
 
   return (
