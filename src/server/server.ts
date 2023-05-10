@@ -17,7 +17,7 @@ const oauth2Client = new google.auth.OAuth2(
   "http://localhost:3000/callback"
 )
 
-const scope = ['https://www.googleapis.com/auth/userinfo.email']
+const scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
 
 const authorizationUrl = oauth2Client.generateAuthUrl({
   access_type: 'offline',
@@ -28,11 +28,10 @@ const authorizationUrl = oauth2Client.generateAuthUrl({
 
 app.get('/callback', async (req, res)=>{
 
-  if (req.url.startsWith('/callback')) {
+
     let q = url.parse(req.url, true).query;
     let { tokens } = await oauth2Client.getToken(q.code);
     oauth2Client.setCredentials(tokens);
-  }
 
 
     const people = google.people({version: 'v1', auth: oauth2Client});
@@ -45,11 +44,10 @@ app.get('/callback', async (req, res)=>{
       console.log(res.data);
     });
 
-
-
-
   res.json(2)
 })
+
+
 app.use(express.json());
 app.get('/login', (req, res)=>{
 
