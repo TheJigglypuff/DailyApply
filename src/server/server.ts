@@ -1,6 +1,7 @@
 import express, {Request, Response, NextFunction, RequestHandler } from 'express';
 const {query} = require ('./db.config.ts');
 const userController = require('./controllers/userController');
+const eventController = require('./controllers/eventController');
 
 const {google} = require('googleapis')
 const url = require('url')
@@ -57,6 +58,15 @@ app.get('/login', (req, res)=>{
 app.post('/createNewUser', userController.createNewUser, (req,res) => {
     res.sendStatus(200);
 });
+
+app.get('/getAllUsers', userController.getAllUsers, (req,res) => {
+    res.status(200).send(res.locals.allUsers);
+})
+
+app.get('/getYourEvents', eventController.getYourEvents, (req,res) => {
+    res.status(200).send(res.locals.myEvents);
+})
+
 
 
 
