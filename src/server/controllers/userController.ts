@@ -22,7 +22,6 @@ module.exports = {
             console.log('error', err);
             next(err);
         }
-        
     },
 
     getAllUsers: () => {
