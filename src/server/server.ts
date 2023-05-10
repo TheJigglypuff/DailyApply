@@ -63,7 +63,7 @@ app.post('/createNewUser', userController.createNewUser, (req,res) => {
     res.sendStatus(200);
 });
 
-app.post('/createNewEvent', eventController.createNewEvent, (req,res) => {
+app.post('/createNewEvent', eventController.createNewEvent, userController.checkStreak, (req,res) => {
     res.sendStatus(200);
 });
 
@@ -75,9 +75,9 @@ app.get('/getYourEvents', eventController.getYourEvents, (req,res) => {
     res.status(200).send(res.locals.myEvents);
 })
 
-app.get('/checkStreak', userController.checkStreak, (req,res) => {
-    res.sendStatus(200);
-});
+// app.get('/checkStreak', userController.checkStreak, (req,res) => {
+//     res.sendStatus(200);
+// });
 
 
 
