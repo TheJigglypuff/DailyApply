@@ -24,7 +24,7 @@ module.exports = {
         }
     },
 
-    getAllUsers: async(req: Request, res: Response, next: NextFunction) => {
+    getAllUsers: async(req: Request, res: Response, next: NextFunction) => { 
         // const user_id = 1;
         try {
             const allUsers = await query(`SELECT name, streak, total_events, photo FROM users`);
