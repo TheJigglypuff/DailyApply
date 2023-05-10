@@ -2,58 +2,35 @@ import express, {Request, Response, NextFunction, RequestHandler } from 'express
 const {query} = require ('./db.config.ts');
 const userController = require('./controllers/userController');
 const eventController = require('./controllers/eventController');
+// const cookiesController = require('./controllers/cookiesController');
+// const cookieParser = require('cookie-parser');
+
 
 const {google} = require('googleapis')
 const url = require('url')
-
+const oAuthController = require('./controllers/oAuthController')
 
 const app = express();
-
-
-
-
-const oauth2Client = new google.auth.OAuth2(
-  "1064967234338-lpljla832pka03qkmg5lg802uu8qm4ic.apps.googleusercontent.com",
-  "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",
-  "http://localhost:3000/callback"
-)
-
-const scope = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
-
-const authorizationUrl = oauth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope,
-})
-
-
-
-app.get('/callback', async (req, res)=>{
-
-
-    let q = url.parse(req.url, true).query;
-    let { tokens } = await oauth2Client.getToken(q.code);
-    oauth2Client.setCredentials(tokens);
-
-
-    const people = google.people({version: 'v1', auth: oauth2Client});
-    people.people.get({
-      resourceName: 'people/me',
-      personFields: 'emailAddresses,names,nicknames,photos,genders,birthdays,ageRanges,locales'
-    }, (err, res) => {
-      if (err) return console.log('The API returned an error: ' + err);
-      console.log('Email: ' + res.data.emailAddresses[0].value + res.data.emailAddresses[0].value);
-      console.log(res.data);
-    });
-
-  res.json(2)
-})
-
-
+// app.use(cookieParser());
 app.use(express.json());
-app.get('/login', (req, res)=>{
 
-  res.redirect(authorizationUrl);
+// app.get('/checkCookies', (req, res) => {
+//   res.json(true)
+// });
+
+
+// app.post('/testCockies', cookiesController.setCookie, (req, res)=>{
+// res.status(200)
+// })
+
+app.get('/callback', oAuthController.getUserInfo, (req, res) => {
+  res.redirect("http://localhost:8080")
 })
+
+
+
+
+app.get('/login', oAuthController.login)
 
 app.post('/createNewUser', userController.createNewUser, (req,res) => {
     res.sendStatus(200);

@@ -1,9 +1,12 @@
 import React from "react";
-
+import { redirect } from "react-router-dom";
+import Cookies from "js-cookie"
 const Login = () => {
+  
 
   const handleClick = () => {
-    console.log(2)
+    console.log(Cookies.get())
+    // window.location.href = 'login'
   }
 
   return(
