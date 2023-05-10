@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, FC, Dispatch, SetStateAction } from 'react';
 
-const JobApplicationForm = () => {
+type Props = {
+  totalApplications: number
+  setTotalApplications: Dispatch<SetStateAction<number>>
+}
+
+const JobApplicationForm: FC<Props> = ({setTotalApplications, totalApplications}) => {
   const [company, setCompany] = useState<string>('');
   const [role, setRole] = useState<string>('');
 
@@ -21,6 +26,7 @@ const JobApplicationForm = () => {
         // reset input fields
         setCompany('');
         setRole('');
+        setTotalApplications(totalApplications++)
       } else {
         console.log('Error fetching request');
       }
@@ -31,7 +37,7 @@ const JobApplicationForm = () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <form onSubmit={handleSubmit} className='jusify-center'>
+      <form onSubmit={handleSubmit} className='jusify-center items-center flex flex-col'>
         <div className='flex items-center space-x-4 w-full'>
           <div className='w-1/2'>
             <input
@@ -41,7 +47,7 @@ const JobApplicationForm = () => {
               onChange={(e) => setCompany(e.target.value)}
               placeholder='Company'
               // required
-              className='border rounded px-3 py-2 w-full'
+              className='border rounded px-3 py-2 w-full shadow-lg'
             />
           </div>
           <div className='w-1/2'>
@@ -52,12 +58,12 @@ const JobApplicationForm = () => {
               placeholder='Role'
               value={role}
               // required
-              className='border rounded px-3 py-2 w-full'
+              className='border rounded px-3 py-2 w-full shadow-lg'
             />
           </div>
         </div>
         <button
-          className='bg-green-500 px-4 py-2 rounded mt-4 w-1/2'
+          className='bg-green-500 px-4 py-2 rounded mt-4 w-1/2 shadow-lg'
           type='submit'
         >
           Submit

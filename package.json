@@ -2,10 +2,12 @@
   "name": "application-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.jsx",
+  "main": "dist/bundle.js",
   "scripts": {
-    "start": "nodemon ./src/server/server.ts & webpack-dev-server",
+    "dev": "nodemon ./src/server/server.ts & webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "nodemon ./src/server/server.ts",
     "tw": "npx tailwindcss -i ./src/client/input.css -o ./src/client/output.css --watch"
   },
   "devDependencies": {

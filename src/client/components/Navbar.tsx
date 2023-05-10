@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FC } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const [dailyStreak, setDailyStreak] = useState<number>(0);
-  const [totalApplications, setTotalApplications] = useState<number>(0);
+type Props = {
+  dailyStreak: number,
+  totalApplications: number
+}
 
-  const fetchStats = async () => {
-    try {
-      const response = await fetch('/userStats');
-      const data = await response.json();
-      setDailyStreak(data.dailyStreak);
-      setTotalApplications(data.totalApplications);
-    } catch (err) {
-      console.log('Error:', err);
-    }
-  };
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
+const Navbar: FC<Props> = ( { dailyStreak, totalApplications}) => {
 
   return (
-    <nav className='bg-blue-900 border-gray-200 dark:bg-gray-900'>
+    <nav className='bg-blue-900 border-gray-200 dark:bg-gray-900 shadow-md'>
       <div className='max-w-screen-xl flex items-center justify-between mx-auto p-4'>
         <span className=' text-2xl font-semibold text-blue-500 '>
           TheTracker
