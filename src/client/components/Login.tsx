@@ -1,10 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
+import { redirect } from "react-router-dom";
+import Cookies from "js-cookie"
 const Login = () => {
-const navigate = useNavigate();
+  
+
   const handleClick = () => {
-    fetch('/login')
+    console.log(Cookies.get())
+    // window.location.href = 'login'
   }
 
   return(
