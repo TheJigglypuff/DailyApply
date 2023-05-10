@@ -12,7 +12,7 @@ const JobApplicationForm = () => {
       role,
     };
     try {
-      const response = await fetch('////', {
+      const response = await fetch('/newApplication', {
         method: 'POST',
         headers: { 'Content-Type': ' application/json' },
         body: JSON.stringify(formData),
@@ -31,9 +31,9 @@ const JobApplicationForm = () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <form onSubmit={handleSubmit} className='w-1/2'>
-        <div className='grid grid-cols-2 gap-4 mb-4'>
-          <div>
+      <form onSubmit={handleSubmit} className='jusify-center'>
+        <div className='flex items-center space-x-4 w-full'>
+          <div className='w-1/2'>
             <input
               type='text'
               name='company'
@@ -41,10 +41,10 @@ const JobApplicationForm = () => {
               onChange={(e) => setCompany(e.target.value)}
               placeholder='Company'
               // required
-              className='border rounded px-3 py-2 w-1/2'
+              className='border rounded px-3 py-2 w-full'
             />
           </div>
-          <div>
+          <div className='w-1/2'>
             <input
               type='text'
               name='role'
@@ -52,12 +52,12 @@ const JobApplicationForm = () => {
               placeholder='Role'
               value={role}
               // required
-              className='border rounded px-3 py-2 w-1/2'
+              className='border rounded px-3 py-2 w-full'
             />
           </div>
         </div>
         <button
-          className='bg-green-500 px-4 py-2 rounded mt-4 w-full'
+          className='bg-green-500 px-4 py-2 rounded mt-4 w-1/2'
           type='submit'
         >
           Submit

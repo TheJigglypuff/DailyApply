@@ -5,20 +5,20 @@ const Navbar = () => {
   const [dailyStreak, setDailyStreak] = useState<number>(0);
   const [totalApplications, setTotalApplications] = useState<number>(0);
 
-  // const fetchApplications = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/getApps');
-  //     const data = await response.json();
-  //     setDailyStreak(data.dailyStreak);
-  //     setTotalApplications(data.totalApplications);
-  //   } catch (err) {
-  //     console.log('Error:', err);
-  //   }
-  // };
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('/userStats');
+      const data = await response.json();
+      setDailyStreak(data.dailyStreak);
+      setTotalApplications(data.totalApplications);
+    } catch (err) {
+      console.log('Error:', err);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchApplications();
-  // }, []);
+  useEffect(() => {
+    fetchStats();
+  }, []);
 
   return (
     <nav className='bg-blue-900 border-gray-200 dark:bg-gray-900'>
@@ -28,7 +28,7 @@ const Navbar = () => {
         </span>
 
         <div className='w-1/3 flex justify-between'>
-          <div className='bg-blue-500 text-white px-4 py-2 mx-10 rounded'>
+          <div className='bg-blue-500 text-white px-4 py-2  rounded '>
             Daily Streak: <span>{dailyStreak}</span>
           </div>
           <div className='bg-blue-500 text-white px-4 py-2 rounded'>
