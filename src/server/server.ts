@@ -17,8 +17,9 @@ app.use(express.json());
 // app.get('/checkCookies', (req, res) => {
 //   res.json(true)
 // });
-
-
+// app.get('/here2', (req,res) => {
+//   res.redirect('/')
+// })
 // app.post('/testCockies', cookiesController.setCookie, (req, res)=>{
 // res.status(200)
 // })
@@ -36,6 +37,10 @@ app.post('/createNewUser', userController.createNewUser, (req,res) => {
     res.sendStatus(200);
 });
 
+app.post('/createNewEvent', eventController.createNewEvent, userController.checkStreak, (req,res) => {
+    res.sendStatus(200);
+});
+
 app.get('/getAllUsers', userController.getAllUsers, (req,res) => {
     res.status(200).send(res.locals.allUsers);
 })
@@ -44,6 +49,9 @@ app.get('/getYourEvents', eventController.getYourEvents, (req,res) => {
     res.status(200).send(res.locals.myEvents);
 })
 
+// app.get('/checkStreak', userController.checkStreak, (req,res) => {
+//     res.sendStatus(200);
+// });
 
 
 
