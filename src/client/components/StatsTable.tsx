@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 interface UserStats {
   name: string;
@@ -11,10 +11,10 @@ interface StatsTableProps {
   data: UserStats[];
 }
 
-const StatsTable: React.FC<StatsTableProps> = ({ data }) => {
+const StatsTable: FC<StatsTableProps> = ({ data }) => {
   return (
     <div className='flex flex-col items-center'>
-      <table className='table-auto border-collapse border border-gray-800 w-1/2'>
+      <table className='table-fixed border-collapse border border-gray-800 w-1/2 '>
         <thead>
           <tr>
             <th className='border border-gray-600 p-2'>ECRI 39</th>
@@ -37,7 +37,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ data }) => {
               <td className='border border-gray-600 p-2'>
                 {userStats.dailyStreak}
               </td>
-              <td className='border border-gray-600 p-2'>
+              <td className='border border-gray-600 p-2 flex h-full w-full justify-center'>
                 {userStats.totalApplications}
               </td>
             </tr>
